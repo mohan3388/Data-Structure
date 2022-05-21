@@ -27,6 +27,17 @@ namespace DataStructureProblem
             }    
             
                 }
+        public void Append(int data)
+        {
+            Node node = new Node(data);
+            Node temp = head;
+            while(temp.next!=null)
+            {
+               temp = temp.next;
+            }
+            temp.next = node;
+            Console.WriteLine(node.data + " Append data");
+        }
         public void Display()
         {
             Node temp = head;
