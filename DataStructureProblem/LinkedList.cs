@@ -11,21 +11,21 @@ namespace DataStructureProblem
         public Node head;
         public void Add(int data)
         {
-            Node node = new Node(data);
-            if(this.head == null)
+          Node node = new Node(data);
+            if(head == null)
             {
                 this.head = node;
-            }else
+
+            }
+            else
             {
                 Node temp = head;
                 while(temp.next != null)
-                { 
-                    temp = temp.next; 
+                {
+                    temp= temp.next;
                 }
                 temp.next = node;
-                Console.WriteLine("inserted data: "+node.data);
-            }    
-            
+            }
                 }
         public void Append(int data)
         {
@@ -37,6 +37,47 @@ namespace DataStructureProblem
             }
             temp.next = node;
             Console.WriteLine(node.data + " Append data");
+        }
+        public int Search(int addedData)
+        {
+            Node node = this.head;
+            int count = 0;
+            while (node != null)
+            {
+                if (node.data == addedData)
+                {
+                    return count;
+                }
+                node = node.next;
+                count++;
+            }
+            return count;
+        }
+        public Node InsertData(int position, int data)
+        {
+            Node node2 = new Node(data);
+            if(this.head== null)
+            {
+                return node2;
+             }
+            if(position==0)
+            {
+                node2.next = head;
+                head = node2;
+                return head;
+            }
+            Node prev = null;
+            Node current = this.head;
+            int count = 0;
+            while(current != null && count<position)
+            {
+                prev = current;
+                current = current.next;
+                count++;
+            }
+            node2.next = prev.next;
+            prev.next = node2;
+            return this.head;
         }
         public void Display()
         {
