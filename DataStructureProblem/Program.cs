@@ -8,7 +8,7 @@ public class Program
         Console.WriteLine("Welcome to data structure program");
         LinkedList list = new LinkedList();
         Console.WriteLine("1. press 1 to display\n2. press 2 to display append data\n3. press 3 Insert data between to element\n4." +
-            "Delete first element in Node\n5.DeletLast Element in node");
+            "Delete first element in Node\n5.DeletLast Element in node\n6. search Element\n7.insert Data at particular Position");
         bool check = true;
         while (check)
         {
@@ -60,6 +60,15 @@ public class Program
                     
                     int node = list.Search(70);
                     Console.WriteLine("data position " + node);
+                    list.Display();
+                    break;
+                case 7:
+                    Console.WriteLine("Add element at particular position");
+                    list.Add(56);
+                    list.Add(30);
+                    list.Add(70);
+                    int c = list.Search(30);
+                    list.InsertData(c+1,40);
                     list.Display();
                     break;
                 default:
