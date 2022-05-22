@@ -37,6 +37,16 @@ public class Program
                    
                     list.Display();
                     break;
+                case 4:
+                    Console.WriteLine("Delete first element in Node");
+                    list.Add(56);
+                    list.Add(70);
+                    list.DeleteFirstNode();
+                    list.Display();
+                    break;
+                default:
+                    Console.WriteLine("press above key");
+                    break;
         }
         }
     }
