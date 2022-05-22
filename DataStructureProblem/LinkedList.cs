@@ -6,155 +6,66 @@ using System.Threading.Tasks;
 
 namespace DataStructureProblem
 {
-    internal class LinkedList
+    internal class LinkedList<T>where T:IComparable
     {
-        public Node head;
-        public void Add(int data)
+        public Node<T> head = null;
+        public void AddNode(T data)
         {
-          Node node = new Node(data);
-            if(head == null)
+            Node<T> newNode = new Node<T>(data);
+            if (head == null)
             {
-                this.head = node;
-
+                head = newNode;
             }
             else
             {
-                Node temp = head;
-                while(temp.next != null)
+                Node<T> temp = head;
+                while (temp.next != null)
                 {
-                    temp= temp.next;
+                    temp = temp.next;
                 }
-                temp.next = node;
+                temp.next = newNode;
+                Console.WriteLine(newNode.data+" inserted data in Linked List ");
             }
-                }
-        public void Append(int data)
-        {
-            Node node = new Node(data);
-            Node temp = head;
-            while(temp.next!=null)
-            {
-               temp = temp.next;
-            }
-            temp.next = node;
-            Console.WriteLine(node.data + " Append data");
         }
-        public int Search(int addedData)
+        public void SortOrderList()
         {
-            Node node = this.head;
-            int count = 0;
-            while (node != null)
-            {
-                if (node.data == addedData)
-                {
-                    return count;
-                }
-                node = node.next;
-                count++;
-            }
-            return count;
-        }
-        public Node InsertData(int position, int data)
-        {
-            Node node2 = new Node(data);
-            if(this.head== null)
-            {
-                return node2;
-             }
-            if(position==0)
-            {
-                node2.next = head;
-                head = node2;
-                return head;
-            }
-            Node prev = null;
-            Node current = this.head;
-            int count = 0;
-            while(current != null && count<position)
-            {
-                prev = current;
-                current = current.next;
-                count++;
-            }
-            node2.next = prev.next;
-            prev.next = node2;
-            return this.head;
-        }
-        public void DeleteFirstNode()
-        {
-            if(this.head==null)
-            {
-                Console.WriteLine("Link list is empty");
-            }
-            Node temp = this.head;
-            this.head = this.head.next;
-        }
-        public Node DeleteLastElement()
-
-        {
+            Node<T> current = head, index = null;
+            T temp;
             if (head == null)
-            {
-                return null;
-            }
-            Node node = head;
-            while(node.next.next!=null)
-            {
-                node=node.next;
-            }
-            node.next = null;
-            return head;
-
-
-        }
-
-        public void DeleteNodeParticularPosition(int position)
-        {
-            if(this.head==null)
-            {
-                Console.WriteLine("Empty");
-
-            }
-            Node temp = head;
-            if(position==0)
-            {
-                this.head = temp.next;
-            }
-            for(int i=0; temp!=null && i<position-1;i++)
-            {
-                temp = temp.next;
-            }
-            if(temp==null || temp.next==null)
             {
                 return;
             }
-            Node next = temp.next.next;
-            temp.next = null;
-        }
-        public void LinkedListSize()
-        {
-            Node temp = this.head;
-            int count = 0;
-            while(temp!=null)
+
+            while (current != null)
             {
-                count++;
-                temp= temp.next;
-            }
-            Console.WriteLine("Linked list size "+count);
-        }
-        public void Display()
-        {
-            Node temp = head;
-            if(temp == null)
-            {
-                Console.WriteLine("empty");
-            }
-            else
-            {
-                while(temp != null)
+                index = current.next;
+                while (index != null)
                 {
-                    Console.WriteLine(temp.data+" ");
-                    temp = temp.next;
+                    if (current.data.CompareTo(index.data) > 0)
+                    {
+                        temp = current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
                 }
+                current = current.next;
             }
+            DisplaySortedList();
+        }
+        public void DisplaySortedList()
+        {
+            Node<T> temp = head;
+            if (head == null)
+            {
+                Console.WriteLine("no element in linked List");
+            }
+            while (temp != null)
+            {
+                Console.Write(temp.data + "  ");
+                temp = temp.next;
+            }
+            Console.WriteLine(" ");
         }
     }
 }
