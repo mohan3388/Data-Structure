@@ -46,10 +46,20 @@ public class Program
                     list.Display();
                     break;
                 case 5:
-                    Console.WriteLine("DeletLast Element in node");
+                    Console.WriteLine("DeleteLast Element in node");
                     list.Add(56);
                     list.Add(70);
                     list.DeleteLastElement();
+                    list.Display();
+                    break;
+                case 6:
+                    Console.WriteLine("search element");
+                    list.Add(56);
+                    list.Add(30);
+                    list.Add(70);
+                    
+                    int node = list.Search(70);
+                    Console.WriteLine("data position " + node);
                     list.Display();
                     break;
                 default:
