@@ -88,6 +88,23 @@ namespace DataStructureProblem
             Node temp = this.head;
             this.head = this.head.next;
         }
+        public Node DeleteLastElement()
+
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            Node node = head;
+            while(node.next.next!=null)
+            {
+                node=node.next;
+            }
+            node.next = null;
+            return head;
+
+
+        }
         public void Display()
         {
             Node temp = head;
